@@ -1,9 +1,9 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const app = express();
-const PORT = process.env.PORT || 8080;
+const cors = require('cors');
 
-// Middleware
+const app = express();
+app.use(cors());
 app.use(bodyParser.json());
 
 // Endpoint de prueba
@@ -12,7 +12,7 @@ app.post('/test', (req, res) => {
   res.json({ status: 'ok', received: req.body });
 });
 
-// Inicio del servidor
+const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`Servidor escuchando en http://localhost:${PORT}`);
 });
