@@ -1,25 +1,25 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const cors = require("cors");
+// index.js
+const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors');
 
 const app = express();
-const PORT = process.env.PORT || 8080;
 
 // Middlewares
-app.use(cors());
-app.use(bodyParser.json());
+app.use(cors()); // Permite conexiones desde cualquier origen
+app.use(bodyParser.json()); // Permite recibir JSON en POST
 
-// Ruta para recibir POST desde ESP32
-app.post("/", (req, res) => {
-    console.log("Datos recibidos del ESP32:", req.body);
-    res.json({ status: "ok", received: req.body });
+// Ruta POST para recibir datos del ESP32
+app.post('/', (req, res) => {
+  console.log('Datos recibidos del ESP32:', req.body);
+
+  // Respuesta de confirmación
+  res.json({
+    status: 'ok',
+    received: req.body
+  });
 });
 
-// Ruta opcional para GET de prueba
-app.get("/", (req, res) => {
-    res.json({ status: "Server up" });
-});
-
-app.listen(PORT, () => {
-    console.log(`Servidor escuchando en http://localhost:${PORT}`);
-});
+// Iniciar servidor
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Servidor escuchando en http://localhost:${PORT}`));
