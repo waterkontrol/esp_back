@@ -20,7 +20,9 @@ app.get("/", (req, res) => {
 // Endpoint de prueba para ESP32
 app.post("/test", (req, res) => {
   console.log("🔹 Petición recibida en /test");
+  console.log("Headers:", req.headers);
   console.log("Body:", req.body);
+
   res.json({
     status: "success",
     message: "Datos recibidos correctamente",
