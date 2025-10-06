@@ -12,7 +12,8 @@ app.post('/test', (req, res) => {
   res.json({ status: 'ok', received: req.body });
 });
 
+// Escucha en el puerto que da Railway y en 0.0.0.0
 const PORT = process.env.PORT || 8080;
-app.listen(PORT, () => {
-  console.log(`Servidor escuchando en http://localhost:${PORT}`);
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Servidor escuchando en http://0.0.0.0:${PORT}`);
 });
